@@ -1,18 +1,23 @@
-local_backend: true
-
 backend:
   name: git-gateway
   branch: main
 
-media_folder: "static/images/uploads"
-public_folder: "/images/uploads"
+local_backend: true
+
+media_folder: "media" #specifies where uploaded files are saved in the repo
+public_folder: "/media" #indicates where they are found in the published site
 
 collections:
-  - name: "blog"
-    label: "Blog"
-    folder: "content/blog"
+  - name: "diary"
+    label: "Diary"
+    folder: "entries/diary"
     create: true
-    slug: "{{slug}}"
+    slug: "{{month}}-{{day}}-{{year}}"
     fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Body", name: "body", widget: "markdown" }
+    - { label: "Title", name: "title", widget: "string" }
+    - { label: "Date", name: "date", widget: "datetime", date-format: "MM-DD-YYYY", time-format:"hh:mm A"}
+    - { label: "Body", name: "body", widget: "markdown" }
+    
+
+
+
